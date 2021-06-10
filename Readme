@@ -1,3 +1,12 @@
 Submission made entirely by Stefan Candea, Animation assets imported from mixamo, and textures for the terrain have their respective sources in the folder.
 
-The Goal of the project is to create <b>low-poly cyberpunk palette experience, similar to a topdown 2.5D shooter</b>
+The Goal of the project is to create **low-poly cyberpunk palette experience, similar to a topdown 2.5D shooter**
+
+
+#controls: 
+Left mouse button - fire forward
+Right mouse button - move player
+
+
+
+I am aware that the raycast does not ignore the player and zombie, and will only function if you click on the floorplane tagged as "PlayArea"
