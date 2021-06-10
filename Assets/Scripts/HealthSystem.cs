@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HealthSystem : MonoBehaviour
 {
+    NavMeshAgent agent;
+    CapsuleCollider col;
+
     [SerializeField]
     int maxHealth = 2;
     [SerializeField]
@@ -15,6 +19,8 @@ public class HealthSystem : MonoBehaviour
     {
         anim = this.GetComponent<Animator>();
         health = maxHealth;
+        agent = GetComponent<NavMeshAgent>();
+        col = GetComponent<CapsuleCollider>();
     }
 
     public void TakeDamage()
@@ -27,8 +33,15 @@ public class HealthSystem : MonoBehaviour
     {
         if(health <= 0)
         {
+            Die();
             anim.SetBool("dead", true);
             Destroy(gameObject, 3.0f);
         }
+    }
+
+    public void Die()
+    {
+        agent.isStopped = true;
+        col.enabled = false; //turn off colisions with dead bodies
     }
 }
