@@ -858,6 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7be363755450dc44b55881cf0b6bce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trak: {fileID: 0}
   maxHealth: 2
   health: 2
 --- !u!1 &6423891956329558107

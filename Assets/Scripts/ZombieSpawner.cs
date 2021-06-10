@@ -5,14 +5,11 @@ using UnityEngine;
 public class ZombieSpawner : MonoBehaviour
 {
     Transform[] Spawns;
-    public int ramp = 10;
-    public int startDelay = 310;
+    public float spawnInterval;
     public GameObject zombiePrefab;
+    private float timer;
+    bool active = true;
 
-    private int delay;
-
-
-    // Start is called before the first frame update
     void Start()
     {
         Spawns = new Transform[transform.childCount];
@@ -23,20 +20,24 @@ public class ZombieSpawner : MonoBehaviour
             Spawns[i] = transform.GetChild(i).transform;
         }
 
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            Debug.Log(Spawns[i].position);
-        }
+        StartCoroutine(SpawnEnemies());
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    IEnumerator SpawnEnemies()
     {
-            delay -= ramp;
-            WaitFrames(delay);
+        while(active)
+        {
+            timer += Time.deltaTime;
+            if(timer >= spawnInterval)
+            {
+                int i = Random.Range(0, transform.childCount);
+                Instantiate(zombiePrefab, Spawns[i].position, Spawns[i].rotation);
 
-            int j = Random.Range(0, 2);
-            Instantiate(zombiePrefab, Spawns[j].position, Spawns[j].rotation);
+                yield return new WaitForSeconds(spawnInterval);
+                timer = 0;
+                spawnInterval += Mathf.Sqrt(timer);
+            }
+        }
     }
 
     public IEnumerator WaitFrames(int amount) // taken from the "waitfor.cs" script, allows us to wait for a given amount of frames.
