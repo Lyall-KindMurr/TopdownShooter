@@ -6,10 +6,18 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField]
     Animator ani = new Animator();
+    [SerializeField]
+    Transform firePoint;
+    public GameObject bulletPrefab;
 
     private void Start()
     {
         ani = this.GetComponent<Animator>();
+    }
+
+    void Shoot()
+    {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
 

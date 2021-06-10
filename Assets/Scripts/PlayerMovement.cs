@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,10 +7,14 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
     NavMeshAgent agent;
+    Animator anim;
+
+    public float speed;
     
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -29,5 +34,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+        speed = agent.velocity.magnitude;
+        anim.SetFloat("Speed", speed);
+
+
     }
 }

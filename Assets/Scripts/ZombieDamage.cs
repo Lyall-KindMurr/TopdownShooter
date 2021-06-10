@@ -20,14 +20,9 @@ public class ZombieDamage : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            Debug.Log("Player took damage");
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            Debug.Log("Player took damage");
+            PlayerHealthSystem player = collision.gameObject.GetComponent<PlayerHealthSystem>();
+            player.TakeDamage();
+            Debug.Log("Player collided with me");
         }
     }
 }
