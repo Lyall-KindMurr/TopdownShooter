@@ -8,8 +8,6 @@ public class HealthSystem : MonoBehaviour
     NavMeshAgent agent;
     CapsuleCollider col;
 
-    public scoreTracker trak;
-
     [SerializeField]
     int maxHealth = 2;
     [SerializeField]
@@ -36,7 +34,6 @@ public class HealthSystem : MonoBehaviour
         if(health <= 0)
         {
             Die();
-            trak.AddKill();
             anim.SetBool("dead", true);
             Destroy(gameObject, 3.0f);
         }
